@@ -1,0 +1,84 @@
+Ex 1)
+ Need spec to pitch matrix
+
+ Spectrogram is |X(n,k)|^2
+ C_fp * Spectrogram = pitch-o-gram
+
+Given a pitch, can figure out corresponding k values
+So if we want to figure out the energy from a given pitch class, 
+
+
+There are different types of pitch we are working with
+ 1. Good old frequeny, in Hz
+ 2. Midi pitch, which increases by 1 for each half step
+ 3. k bins, which represent harmonics
+    of the original value?
+  
+What do k bins correspond to?
+ When taking a DTFT, there are N samples
+ N samples -> N k vals
+ k = 0 -- corresponds to DC energy
+ k = 1 -- fundamental frequency
+ k = k -- frequency * k 
+
+So this is all relative to the number of samples N
+
+Imagine the fourier transform as measuring similarity with a bunch of sine waves
+
+It will try a total of N sine waves 
+ The frequencies of the test sine waves will increase with n
+ Each test sine wave will have increasing frequency
+ The nth test sine wave will have n periods from 0 to N
+
+DTFT f: R^n --> R^n
+STFT g: R^n --> R^(nxnum_hops)
+
+Spectrogram converts STFT into energy measurements
+
+Want fxn from Spectrogram to pitchogram
+ Pitchogram reorganizes spectrum vector (R^n) into pitch vector (R^12)
+ In order to do this, need mapping from k to pitch
+
+In the kth slot, there are k periods over N samples
+N samples take N/Fs seconds
+k periods / (N/Fs) seconds -> k cycles / (N/Fs) seconds
+
+Therefore frequency = k*Fs/N (cycles/second)
+
+To test this knowledge, implement bins_of_pitch() and ex 9
+ From lab4
+
+Bins of pitch successful
+Next create pitchogram from C2 to C8 (36 to 108 MIDI)
+ Ensure every pitch bin can draw from >= 2 freq bins of the spectrogram
+Success
+
+Ex 1) spectrogram --> pitchogram
+Spectrogram is in columns indexed by k vals
+Need to remap k's to pitches
+
+Have starting and ending MIDI pitches
+Have: MIDI --> k_bins
+So get a list of k_bins for each MIDI pitch
+
+Use that to convert spectrogram to pitchogram
+spectrogram: N x num_hops
+pitchogram: 12 x num_hops
+cfp: 12 x N
+
+Should I do it with pitches indexed as their actual values?
+ Or just based on order
+
+Got answer
+ How can I check that this is correct
+ Can potentially step through the chroma lab
+ 
+
+
+
+
+But we start with pitches, so may have to g in reverse
+
+
+
+

@@ -1,0 +1,274 @@
+First main goal -- Submit 21M.387 Pset as quickly as possible
+
+Pomo 1: 1:40 - 2:05 
+Goal: Exercise 1
+
+Got song saved, loaded
+Visualize using sonic visualizer
+ Figure out what sonic visualizer is 
+ Might be in struct
+
+Actually don't worry about for now, just start on pset
+Was mistakenly looking at the lab 
+
+Exercise 1 -- write fxn make_binary_checkerboard
+ Binary checkerboard kernel
+ Remember lecture -- the checkerbaord kernel represents a convolution of sorts
+ 
+ Once have self-similarity matrix, want to find the parts that resemble section switching
+ Can measure this by taking convolution with [[1,0],[0,1]]
+ 
+In this exercise -- even-length checkerboard w/ dim (MxM)
+Take as input L "half-length"
+ Bottom-left and top-right are 1, others -1 
+ Can use stack and np.full
+ 
+ [[-1,1],
+  [1,-1]]
+ 
+ Or could initialize to empty, and set parts to diff matrices
+ 
+ Best option would be a 2D concatenation
+  Don't think I can do this
+ Could set each element to to xor wrt indices
+  Ooh sneaky
+
+Did it the regular concatenation way
+Step one, need indices in matrix
+ What is name?
+ meshgrid? (what is meshgrid)
+ ogrid, mgrid?
+
+Ogrid is not a function
+ Creats a multi-dimensional meshgrid
+Two instances of nd_grid are made available in the numpy namespace as mgrid and ogrid
+
+Use remaining 4 mins on sneaky way
+
+mgrid = np.lib.index_tricks.nd_grid()
+mgrid[0:5,0:5] creates index array
+ogrid is same thing with sparse=True
+
+Condition for xor is on predicates index>=hlen
+
+Tried masking, but collapsing shape
+Oh, don't use a[a>3], but just a>3
+Great, now just need xor between layers
+numpy has logical and bitwise xor
+
+Need to convert boolean to int
+
+Done
+
+May also be able to do using a variant of np.full
+ np.full supports broadcasting
+ can do np.full((3,3),[1,2,3])
+ But this won't do the kind of copying I am trying to do
+
+What about fancy indexing?
+ mgrid kind of is fancy indexing -- can use a bit better
+ May also be able to do boolean conversion better
+
+Can somehow subtract boolean matrices 
+ Don't use this
+ I think that ^ is logical xor
+
+Planning:
+9 parts, then need to do the chemistry -- time self
+Have about 4 hours of battery (actually 3.5 hrs) 
+ Best case scenario, finish this pset in 2
+One exercise per pomo -- 25*9 = 225 minutes 
+~4 hours -- oh geez
+
+Shoot for two exercises per pomo
+Therefore need to go flat out -- no extraneous learning
+
+Exercise 2a:
+
+2D Gaussian matrix phi
+ Value highest in center then fall off radially as Gaussian
+ Input: wlen = desired width and height of the matrix
+ Symmetric square mat 
+ Given formla
+ 
+ Find correct value for c st matrix perfectly symmetric
+  Ooh fun
+ Plot with M = 20
+
+Pomo 2: 3:45 -- 4:10
+Goal: exercise 2a and 2b
+ 
+Step 1 -- figure out how to do function over indices
+ I can use mgrid!
+
+phi(n,m) = e**(-eps**2*)
+
+_______________________________________
+
+Also may take some work to get the wifi going :(
+Know that the path is something along the lines
+ interface: wlp2s0
+ want to show all wifis that correspond to that interface
+ use iw utility
+ ip link wlp2s0 scan <-- something like this
+ Got it! -- sudo iw dev wlp2s0 scan | grep SSID
+  Ok, check once in air, not up yet
+_______________________________________
+
+How to pass function over the array
+
+test in python3 shell
+Can I vectorize over two args
+ Need to figure out more about vectorizing
+Oh shit, first try
+
+2b) create a new fxn make_gaussian_checkerboard(hlen)
+ But taper
+Done
+
+Ex 3)
+Create fxn make_checkerboard_novelty(ssm, ch_hlen)
+What does novelty mean in this context
+ Trying to figure out part of the song
+ High novelty at the points where convolution with this funny checkerboard are high
+ Try along the diag
+
+Inputs: S (SSM) and L (half-length param for K)
+
+Output will be an array of the multiplications
+Procedure will be sliding along diagonal of SSM
+ Depends on where starting w/ 0,0
+ Will 0,0 correspond to center of checkerboard?
+  If so, need to zero-pad ssm
+ Yes
+
+Step 1: zero pad whole array
+
+Would like ssm example
+ Get ssm from data/ex3
+
+Can do padding by starting with wider np.zeros and fill in
+
+Success -- now do sliding 
+Could do for loop
+
+Could also do matrix product?
+Apply along axis I don't think will work, because not exactly along axis
+Check docs -- no luck
+
+Think about matrix product -- may not work either
+np.convolve -- no luck here
+
+check out struct.ipyb -- no help here, hidden in fmp.diagonal_novelty 
+Getting wrong values for the mutliplicationo
+Negative for some reason
+Because the checkerboard itself is inverted
+
+Fixed -- success
+
+Exercise 4:
+
+Stomach hurts -- may have had too much coffee
+ Get more water, go to restroom
+Do this after this pomo 
+
+Start 6:00 -- 6:25
+Goal: Finish ex 4, start ex 5
+
+est -- alg generated estimate of song boundaries
+ Given as sample locations at a feature rate of 10Hz
+ref -- ground truth, given in seconds
+
+Success
+
+Ex 5:
+
+create compare boundaries
+ est, ref, tau -- tau is dist metric 
+ return tp, fp, fn
+
+|bEst - bRef| < tau
+
+How to do map along array
+
+50 mins of battery left
+break is not breaking
+ 
+Exercise 6, done
+
+Now ex 7:
+Optimize over params of the sliding checkerboard boundary detection
+ Use The Beatles ground truth set
+
+Fxn: song_boundary_score()
+Inputs:
+ wav_file, ref_file, cens_fill_len, cb_len, thresh
+Outputs: f-measure score of estimated boundaries vs ref anotations
+
+So will be changing size of the checkerboard, and then doing peak_finding on that 
+
+First need to create ssm
+ Check out struct notebook 
+ 
+Do helper fxn from lab first
+
+Running out of time with battery
+Ok, did chemistory -- do ex 7 through 9 as quickly as possible
+Have a feeling that ex 7 will be most substantial
+
+In order to do song_boundary_score()
+need to create audio_to_ssm -- probably just inner prods on chromagram
+
+audio_to_ssm(snd, cens_filter_len, cens_ds)
+ remember cens -- this is a way of cleaning up the chromagram
+There should be a fmp cens method
+This will be in the lab -- do this first, then exercise 7
+
+Lab -- exercise 3
+
+Create regular chromagrad from snd
+no normalization 
+no log compression
+
+N, H = 4096, 2048
+CENS <-- fmp.cens(cens_filt_len, cens_ds)
+Create ssm and return chromagram
+Chromagram showing really small, another printing automatically
+Auto print from fxn call
+ Small chroma from params of fmp.make_chromagram
+ What are params of make_chromagram?
+
+snd,fs,fft_len, hop_size,gamma, (T/F), tuning
+Only short because very long -- long sample 
+Fixed
+
+How to know fs and ff?
+Just put outside fxns
+Getting P and R as 0's
+ Plotting order weird -- I think because plt renders at end of program
+
+The plots ref and est aren't lined up
+How to find the sample rate from load_boundary_annotations?
+
+Would like to plot find_peaks2
+ Got it
+Would like to pick more peaks
+Issue is probably the window length
+
+Well have a very high fft_len
+
+In order to figure out sample stuff, may need to learn more about cens
+cens not modifying length
+ref in seconds!
+
+Only issue seems to be thresholding
+ Maybe wrong params
+Window length is screwing up
+
+Two issues 
+ 1. Window length in find_peaks2
+ 2. maybe answers offset
+
+Maybe really just bad settings
+
+
