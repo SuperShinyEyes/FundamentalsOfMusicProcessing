@@ -1,0 +1,14 @@
+Building utilities for later labs.
+
+Functions defined:
+    "def midi_pitch_to_freq(p):\n",
+    "def freq_to_midi_pitch(f):\n",
+    "def midi_pitch_to_spn(s) :\n",
+    "def print_c_major() :\n",
+    "def compose2(f,g): return lambda x: f(g(x))\n",
+    "def calculate_harmonic_frequencies(pitch, num_h) :\n",
+    "def make_sine_tone(freq, amp, fs, dur):\n",
+    "def play_simultaneously(freqs_and_amps, fs=44100, dur=3.0) :\n",
+    "def make_tone(f0, partials):\n",
+
+
