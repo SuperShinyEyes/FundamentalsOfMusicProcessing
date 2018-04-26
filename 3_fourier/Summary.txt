@@ -1,0 +1,10 @@
+Definitions: 
+    "def make_cosine(a, k, ph, N) :\n",
+    "def make_sine(a, k, ph, N) :\n",
+    "#def plot_cosine(a = 1, k = 1, ph = 0) :\n",
+    "def k_to_f(k): return k*Fs/np.float(N) \n",
+    "def plot_cosine(ph = best_phi) :\n",
+    "def window(x,win_len,win_pos):\n",
+    "def stft(snd, fft_size, hop_size):\n",
+    "def find_peaks_2(x,proximity):\n",
+    "def N_to_midis(N):\n",

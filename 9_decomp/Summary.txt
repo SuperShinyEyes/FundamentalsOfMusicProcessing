@@ -1,0 +1,9 @@
+Definitions: 
+    "def count_overlaps(n,N,H):\n",
+    "def istft(X, hop_size, centered=True):\n",
+    "def make_three_masks(filt_h, filt_p, beta):\n",
+    "def modify_signal(x, beta=1.5):\n",
+    "def pitch_to_freq(p): return 440.0*(2.0**((p-69.0)/12.0))\n",
+    "def freq_to_k(f,N,fs): return f * N / fs\n",
+    "def make_pitch_spectral_model(fs, fft_len, p):\n",
+    "def make_W_from_pitches(fs, fft_len, pitches):\n",
