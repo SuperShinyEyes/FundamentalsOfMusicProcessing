@@ -8,3 +8,5 @@ Definitions:
     "def stft(snd, fft_size, hop_size):\n",
     "def find_peaks_2(x,proximity):\n",
     "def N_to_midis(N):\n",
+
+Audio peak finding and kick vs snare drum detection.

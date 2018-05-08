@@ -15,3 +15,9 @@ Definitions:
     "def bpm_to_index(bpm, ff):\n",
     "def find_beat_period(nov, ff, bpm_low, bpm_high):\n",
     "#def test_composite_novelty(a):\n",
+
+Tempo estimation using 
+ 1. tempogram 
+ 2. dynamic programming model.
+
+Tools to play sound with synthesized metronome at the estimated tempo

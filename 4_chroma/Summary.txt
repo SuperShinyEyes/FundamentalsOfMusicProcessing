@@ -14,3 +14,6 @@ Definitions:
     "    def shortest_dist_to(j,i):\n",
     "def find_path(B) :\n",
     "def ex9(file1,file2):\n",
+
+Use dynamic time warping to sync of different version of same song.
+Includes tools for creation and manipulation of chromograms.

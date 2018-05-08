@@ -13,3 +13,5 @@ Definitions:
     "def traverse(end_position):\n",
     "def get_match_regions(d_dtw, B, num_matches):\n",
     "def cens_to_snd_index(sample_num):\n",
+
+Apply dynamic time warping algorithm to match together different recordings of the same song.

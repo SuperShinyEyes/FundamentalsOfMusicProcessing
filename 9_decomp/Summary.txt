@@ -7,3 +7,5 @@ Definitions:
     "def freq_to_k(f,N,fs): return f * N / fs\n",
     "def make_pitch_spectral_model(fs, fft_len, p):\n",
     "def make_W_from_pitches(fs, fft_len, pitches):\n",
+
+Inverse short term fourier transform, various filters, and separating right piano hand from left.

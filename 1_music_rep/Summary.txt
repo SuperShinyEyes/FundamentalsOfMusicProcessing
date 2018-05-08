@@ -1,5 +1,3 @@
-Building utilities for later labs.
-
 Functions defined:
     "def midi_pitch_to_freq(p):\n",
     "def freq_to_midi_pitch(f):\n",
@@ -11,4 +9,5 @@ Functions defined:
     "def play_simultaneously(freqs_and_amps, fs=44100, dur=3.0) :\n",
     "def make_tone(f0, partials):\n",
 
-
+Building utilities for later labs.
+ Convert between pitch standards and synthesize sounds.

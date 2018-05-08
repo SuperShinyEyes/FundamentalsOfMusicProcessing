@@ -17,3 +17,6 @@ Definitions:
     "def make_simple_trans_probs(diag_ratio):\n",
     "def hmm_estimation(chroma, trans_probs):\n",
     "def create_hmm_estimation(diag_ratio = 1.0):\n",
+
+Estimation of current chord, using triad sound templates.
+ Incorporates sound smoothing capabilites and HMM estimation for current chord selection.

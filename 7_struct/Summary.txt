@@ -16,3 +16,5 @@ Definitions:
     "def song_boundary_score(wav_file, ref_file, cens_filt_len, cb_len, thresh, plot=False):\n",
     "def average_boundary_score(cens_filt_len, cb_len, thresh):\n",
     "def optimize_parameters(cens_filt_len_range, cb_len_range, thresh_range):\n",
+
+Plot novelty curve -- use to detect song boundaries (like chorus v verse)
